@@ -40,7 +40,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className="font-sans antialiased">
+      <div className="min-h-[100vh] bg-white p-4 font-sans text-neutral-900 antialiased">
         <Story />
       </div>
     ),
