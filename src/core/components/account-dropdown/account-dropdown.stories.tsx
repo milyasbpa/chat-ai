@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { AccountDropdown } from './account-dropdown';
 
 const meta = {
-  title: 'Core/AccountDropdown',
+  title: 'Components/AccountDropdown',
   component: AccountDropdown,
   parameters: {
     layout: 'centered',
