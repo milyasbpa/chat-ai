@@ -5,6 +5,7 @@ import { Button } from '@/core/components/button/button';
 import { Link } from '@/core/components/link/link';
 import { SidebarChip } from './sidebar-chip';
 import { Avatar } from '@/core/components/avatar/avatar';
+import { AccountDropdown } from '@/core/components/account-dropdown/account-dropdown';
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   authState?: 'guest' | 'signedIn';
@@ -113,27 +114,29 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           </Button>
 
           {authState === 'signedIn' ? (
-            <button className="flex w-full items-center gap-1 rounded px-[14px] py-[10px] transition-colors hover:bg-neutral-50">
-              <Avatar src={userAvatar} alt={userName} />
-              <span className="flex-1 truncate px-0.5 text-left text-[14px] leading-[20px] font-medium text-neutral-900">
-                {userName}
-              </span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="shrink-0 text-neutral-500"
-              >
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="19" cy="12" r="1" />
-                <circle cx="5" cy="12" r="1" />
-              </svg>
-            </button>
+            <AccountDropdown>
+              <button className="flex w-full items-center gap-1 rounded px-[14px] py-[10px] transition-colors hover:bg-neutral-50">
+                <Avatar src={userAvatar} alt={userName} />
+                <span className="flex-1 truncate px-0.5 text-left text-[14px] leading-[20px] font-medium text-neutral-900">
+                  {userName}
+                </span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0 text-neutral-500"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="19" cy="12" r="1" />
+                  <circle cx="5" cy="12" r="1" />
+                </svg>
+              </button>
+            </AccountDropdown>
           ) : (
             <div className="flex flex-col gap-6 rounded-lg border border-neutral-200 bg-white p-4">
               <div className="flex flex-col gap-1">
