@@ -9,7 +9,7 @@ type LinkStoryProps = React.ComponentProps<typeof Link> & {
 };
 
 const meta = {
-  title: 'Core/UI/Link',
+  title: 'Components/Link',
   component: Link,
   parameters: {
     layout: 'centered',

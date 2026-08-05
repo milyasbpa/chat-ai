@@ -32,3 +32,5 @@ This is the central rulebook for all AI Agents working on this Next.js project.
 ## Design Implementation Rules
 
 1. **Strict Figma Compliance**: Do not over-engineer components. Stick strictly to Figma properties and do not add unspoken states (like hover, focus, active, disabled) unless explicitly defined in the Figma node or explicitly requested by the user.
+
+2. **TypeScript Integrity**: Always run `tsc --noEmit` and ensure there are no TypeScript errors before declaring a task or component finished.

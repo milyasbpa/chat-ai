@@ -10,7 +10,7 @@ type ButtonStoryProps = React.ComponentProps<typeof Button> & {
 };
 
 const meta = {
-  title: 'Core/UI/Button',
+  title: 'Components/Button',
   component: Button,
   parameters: {
     layout: 'centered',
