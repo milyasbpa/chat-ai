@@ -15,7 +15,16 @@
 - [ ] Yes
 - [ ] No
 
-<!-- (Add screenshots here) -->
+## 📸 Attachment (UI Screenshots)
+
+<!-- Add screenshots or video recordings here to demonstrate the UI changes. Only include this section if there are UI changes, otherwise please delete it. -->
+
+## 🧪 How To Test
+
+<!-- Provide step-by-step instructions on how reviewers can test your changes locally. -->
+
+1. Run `pnpm dev`
+2.
 
 ## ✅ Verification & Testing
 

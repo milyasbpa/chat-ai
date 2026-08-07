@@ -14,15 +14,22 @@ export const metadata: Metadata = {
 };
 
 import QueryProvider from '@/core/config/QueryProvider';
+import { MainLayout } from '@/core/components/layout/main-layout';
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
       className={`${notoSans.variable} h-full font-sans antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <MainLayout>{children}</MainLayout>
+        </QueryProvider>
       </body>
     </html>
   );
