@@ -76,7 +76,7 @@ export function EmptyState() {
         </span>
       </h1>
 
-      <div className="flex flex-wrap items-center justify-center gap-4 px-4">
+      <div className="mx-auto grid w-full max-w-[750px] grid-cols-2 gap-4 px-4 lg:grid-cols-4">
         <QuickstartCard
           title="Draft email"
           description="Generate email for any occasion you need."

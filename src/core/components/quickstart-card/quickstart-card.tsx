@@ -20,7 +20,7 @@ export const QuickstartCard = React.forwardRef<
       <button
         ref={ref}
         className={cn(
-          'flex w-[166px] flex-col items-start gap-6 rounded-lg border border-neutral-200 bg-white p-4 text-left transition-colors hover:bg-neutral-50',
+          'flex w-full flex-col items-start gap-4 rounded-lg border border-neutral-200 bg-white p-4 text-left transition-colors hover:bg-neutral-50 md:gap-6',
           className
         )}
         {...props}
@@ -35,7 +35,7 @@ export const QuickstartCard = React.forwardRef<
             {icon}
           </div>
         )}
-        <div className="flex w-[134px] flex-col items-start gap-2">
+        <div className="flex w-full flex-col items-start gap-2">
           <h3 className="text-[14px] leading-[20px] font-semibold text-neutral-900">
             {title}
           </h3>

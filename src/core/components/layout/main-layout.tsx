@@ -24,7 +24,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
             aria-hidden="true"
           />
           {/* Sidebar Panel */}
-          <div className="fixed inset-y-0 left-0 z-50 flex w-[240px]">
+          <div className="fixed inset-y-0 left-0 z-50 flex w-[320px]">
             <Sidebar authState="guest" />
           </div>
         </div>
