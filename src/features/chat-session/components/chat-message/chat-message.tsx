@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Image from 'next/image';
-import { Avatar } from '@/core/components/avatar/avatar';
+import { Copy, RefreshCw } from 'lucide-react';
 import { Button } from '@/core/components/button/button';
 import { cn } from '@/core/utils/cn';
 
@@ -26,7 +26,7 @@ export function ChatMessage({
     >
       <div
         className={cn(
-          'flex max-w-[85%] flex-col gap-3 rounded-lg p-3 lg:max-w-[75%]',
+          'flex max-w-[85%] flex-col gap-3 rounded-xl p-3 lg:max-w-[75%]',
           isUser
             ? 'rounded-tr-sm bg-neutral-100 text-neutral-900'
             : 'rounded-tl-sm border border-neutral-200 bg-white'
@@ -43,13 +43,22 @@ export function ChatMessage({
         {!isUser && (
           <>
             <div className="flex flex-row items-start gap-3">
-              <Avatar
-                fallback="AI"
-                alt="AI"
-                className="mt-0.5 bg-indigo-100 text-indigo-700 shadow-sm"
-              />
+              <div className="flex shrink-0 items-center justify-center">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.2329 23.0594L8 24L8.94065 19.767C8.34035 18.6445 8 17.362 8 16C8 11.5817 11.5817 8 16 8C20.4182 8 24 11.5817 24 16C24 20.4182 20.4182 24 16 24C14.638 24 13.3555 23.6597 12.2329 23.0594ZM12 16C12 18.2091 13.7909 20 16 20C18.2091 20 20 18.2091 20 16H18.4C18.4 17.3255 17.3255 18.4 16 18.4C14.6745 18.4 13.6 17.3255 13.6 16H12Z"
+                    fill="#4338CA"
+                  />
+                </svg>
+              </div>
               {isLoading ? (
-                <div className="flex h-5 items-center">
+                <div className="flex h-8 items-center text-indigo-700">
                   <svg
                     width="24"
                     height="24"
@@ -58,31 +67,25 @@ export function ChatMessage({
                     xmlns="http://www.w3.org/2000/svg"
                     className="animate-pulse"
                   >
-                    <circle
-                      cx="4"
-                      cy="12"
-                      r="2"
-                      fill="currentColor"
-                      className="text-neutral-400"
-                    />
+                    <circle cx="4" cy="12" r="3" fill="currentColor" />
                     <circle
                       cx="12"
                       cy="12"
-                      r="2"
+                      r="3"
                       fill="currentColor"
-                      className="text-neutral-400 opacity-75"
+                      className="opacity-75"
                     />
                     <circle
                       cx="20"
                       cy="12"
-                      r="2"
+                      r="3"
                       fill="currentColor"
-                      className="text-neutral-400 opacity-50"
+                      className="opacity-50"
                     />
                   </svg>
                 </div>
               ) : (
-                <div className="flex-1 text-[14px] leading-[20px] whitespace-pre-wrap text-neutral-900">
+                <div className="mt-1 flex-1 text-[14px] leading-[20px] whitespace-pre-wrap text-neutral-900">
                   {content}
                 </div>
               )}
@@ -101,6 +104,7 @@ export function ChatMessage({
                       alt={`Attached ${idx}`}
                       fill
                       className="object-cover"
+                      sizes="120px"
                     />
                   </div>
                 ))}
@@ -109,43 +113,24 @@ export function ChatMessage({
 
             {/* Action buttons for AI */}
             {!isLoading && (
-              <div className="flex flex-row gap-2 pl-[44px]">
+              <div className="flex flex-row items-center gap-4 pt-1 pl-[44px]">
                 <Button
                   variant="outline"
-                  className="h-8 border-none bg-transparent px-2 text-neutral-500 shadow-none hover:bg-neutral-100 hover:text-neutral-900"
+                  className="h-8 w-8 border-none bg-transparent p-0 text-neutral-500 shadow-none hover:bg-neutral-100 hover:text-neutral-900"
                   onClick={() =>
                     content && navigator.clipboard.writeText(content)
                   }
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 4V2H14V12H12V14H2V4H4ZM4 12H10V4H4V12ZM6 6H12V10H14V2H6V6Z"
-                      fill="currentColor"
-                    />
-                  </svg>
+                  <Copy className="h-[20px] w-[20px]" />
                 </Button>
                 <Button
                   variant="outline"
-                  className="h-8 border-none bg-transparent px-2 text-neutral-500 shadow-none hover:bg-neutral-100 hover:text-neutral-900"
+                  className="h-8 gap-1 border-none bg-transparent px-2 text-indigo-700 shadow-none hover:bg-indigo-50"
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.6666 4.88661C11.5303 3.73812 9.91924 3 8.13401 3C4.85108 3 2.15579 5.51862 2.01258 8.75H0.675781C0.822299 4.77708 4.14811 1.66667 8.13401 1.66667C10.2889 1.66667 12.2131 2.60742 13.5132 4.09278L14.6666 2.93934V7.60601H9.99992L12.6666 4.88661ZM3.33325 13.0607V8.39401H7.99992L5.33325 11.1134C6.46955 12.2619 8.0806 13 9.86583 13C13.1488 13 15.8441 10.4814 15.9873 7.25H17.3241C17.1775 11.2229 13.8517 14.3333 9.86583 14.3333C7.71092 14.3333 5.78676 13.3926 4.48663 11.9072L3.33325 13.0607Z"
-                      fill="currentColor"
-                    />
-                  </svg>
+                  <RefreshCw className="h-[20px] w-[20px]" />
+                  <span className="text-[14px] leading-[20px] font-medium">
+                    Regenerate
+                  </span>
                 </Button>
               </div>
             )}
