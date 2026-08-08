@@ -5,35 +5,46 @@ export interface QuickstartCardProps extends React.ButtonHTMLAttributes<HTMLButt
   title: string;
   description: string;
   icon?: React.ReactNode;
+  iconWrapperClassName?: string;
 }
 
 export const QuickstartCard = React.forwardRef<
   HTMLButtonElement,
   QuickstartCardProps
->(({ title, description, icon, className, ...props }, ref) => {
-  return (
-    <button
-      ref={ref}
-      className={cn(
-        'flex w-[166px] flex-col items-start gap-6 rounded-lg border border-neutral-200 bg-white p-4 text-left',
-        className
-      )}
-      {...props}
-    >
-      {icon && (
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-700">
-          {icon}
+>(
+  (
+    { title, description, icon, iconWrapperClassName, className, ...props },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        className={cn(
+          'flex w-full flex-col items-start gap-4 rounded-lg border border-neutral-200 bg-white p-4 text-left transition-colors hover:bg-neutral-50 md:gap-6',
+          className
+        )}
+        {...props}
+      >
+        {icon && (
+          <div
+            className={cn(
+              'flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-700',
+              iconWrapperClassName
+            )}
+          >
+            {icon}
+          </div>
+        )}
+        <div className="flex w-full flex-col items-start gap-2">
+          <h3 className="text-[14px] leading-[20px] font-semibold text-neutral-900">
+            {title}
+          </h3>
+          <p className="text-[12px] leading-[16px] font-normal text-neutral-600">
+            {description}
+          </p>
         </div>
-      )}
-      <div className="flex w-[134px] flex-col items-start gap-2">
-        <h3 className="text-[14px] leading-[20px] font-semibold text-neutral-900">
-          {title}
-        </h3>
-        <p className="text-[12px] leading-[16px] font-normal text-neutral-600">
-          {description}
-        </p>
-      </div>
-    </button>
-  );
-});
+      </button>
+    );
+  }
+);
 QuickstartCard.displayName = 'QuickstartCard';

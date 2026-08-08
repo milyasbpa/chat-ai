@@ -1,37 +1,52 @@
-## Description
+## 📝 Description
 
-This Pull Request introduces the foundational setup (Phase 1) for the Chat AI Portfolio project. The architecture is built using Next.js App Router and strictly follows the Clean Architecture (Feature-Sliced Design) pattern to ensure an enterprise-grade, scalable, and maintainable codebase.
+Implemented the Guest Mode Chat interface according to Figma designs. This includes the welcome empty state with Quickstart cards and the main chat input field at the bottom.
 
-## Type of Change
-- [x] New feature (non-breaking change which adds functionality)
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [x] Architecture and Infrastructure setup
+## 🛠️ Changes Made
 
-## Key Implementations
+- Created `EmptyState` component with the welcome text and 4 Quickstart cards.
+- Modified `QuickstartCard` to accept an `iconWrapperClassName` for custom icon background colors.
+- Created `ChatInput` component with a responsive text area and submit button.
+- Updated `src/app/page.tsx` to integrate these components using flex layout.
 
-1. **Framework & Styling**:
-   - Initialized Next.js 14+ App Router with TypeScript.
-   - Integrated Tailwind CSS v4 (Headless UI approach).
-2. **Clean Architecture Structure**:
-   - `src/app`: Next.js Routing Layer.
-   - `src/core`: Global Infrastructure, Config, and Reusable Utilities.
-   - `src/features`: Domain-specific modules (`chat-onboarding`, `chat-session`, `auth`).
-3. **State Management & Caching**:
-   - Configured Zustand for global client state (e.g., Guest Mode, API Key).
-   - Configured TanStack Query (React Query) with optimized stale times for server state.
-4. **Testing Infrastructure**:
-   - Integrated Jest and React Testing Library for Unit Tests.
-   - Integrated Playwright for End-to-End (E2E) Tests.
-5. **Quality Assurance & Standards**:
-   - Storybook setup for UI component isolation and testing.
-   - Husky pre-commit hooks configured to run `lint-staged`.
-   - Strictly configured ESLint, Prettier, and Axe-core (Accessibility).
-   - Custom AI Guidelines enforced via `.agents/AGENTS.md`.
+## 🎨 UI/UX Changes
 
-## Verification & Checklist
+- [x] Yes
+- [ ] No
 
-- [x] My code follows the project's strict architecture guidelines (`AGENTS.md`).
-- [x] Linter and formatting checks pass locally before pushing.
-- [x] There are no hardcoded secrets or exposed API keys.
-- [x] Storybook environment is fully operational.
+## 📸 Attachment (UI Screenshots)
+
+**Desktop (1440x900)**
+<br>
+![Desktop](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/desktop.png)
+<br><br>
+**Tablet (768x1024)**
+<br>
+![Tablet](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/tablet.png)
+<br><br>
+**Mobile (375x812)**
+<br>
+![Mobile](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/mobile.png)
+
+## 🧪 How To Test
+
+1. Run `pnpm dev`
+2. Open http://localhost:3000
+3. Verify the "Hey, I'm Chat AI" text is centered.
+4. Verify the 4 Quickstart cards have different icon background colors.
+5. Verify the chat input field is sticky/pinned at the bottom of the screen.
+
+## ✅ Verification & Testing
+
+- [ ] Storybook testing
+- [ ] Unit/Integration tests
+- [x] Manual testing on browsers (Desktop, Tablet, Mobile)
+
+## 🔗 Related Issues / Links
+
+- Figma: https://www.figma.com/design/gMJHtCs6yoMkiazUfPMUxI/chat-ai-figma?node-id=2067-5944&m=dev
+- Ticket/Issue:
+
+## ⚠️ Notes for Reviewers
+
+- The submit button is currently disabled by default as per the design until we implement typing states.
