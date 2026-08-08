@@ -18,6 +18,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/core/components/accordion/accordion';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ApiKeyModalProps {
   open: boolean;
@@ -57,13 +58,13 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[480px] overflow-hidden border-neutral-200 p-0 sm:rounded-[12px]">
+      <DialogContent className="w-[calc(100%-32px)] max-w-[480px] overflow-hidden rounded-[12px] border-neutral-200 p-0 sm:w-full">
         {/* Scrollable Container */}
         <div className="max-h-[85vh] overflow-y-auto">
           <div className="flex flex-col gap-6 p-6">
             <DialogHeader className="gap-1 text-center sm:text-center">
               <DialogTitle className="text-[20px] leading-[28px] font-semibold text-neutral-900">
-                Enter Your OpenAI API Key
+                Enter Your OpenAI API Key:
               </DialogTitle>
               <DialogDescription className="text-[14px] leading-[20px] font-normal text-neutral-500">
                 You need an OpenAI API Key to use this app. Your API Key will be
@@ -81,8 +82,9 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
                 href="https://platform.openai.com/api-keys"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex self-start text-[14px] leading-[20px] font-medium text-indigo-600 hover:underline"
+                className="inline-flex items-center gap-1 self-start text-[14px] leading-[20px] font-medium text-indigo-600 hover:underline"
               >
+                <ArrowUpRight className="h-4 w-4" />
                 Go to Open AI to get your API key
               </a>
             </div>
@@ -104,7 +106,7 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
               <h3 className="text-[18px] leading-[28px] font-semibold text-neutral-900">
                 FAQs
               </h3>
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="multiple" className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`}>
                     <AccordionTrigger className="text-[14px] leading-[20px]">

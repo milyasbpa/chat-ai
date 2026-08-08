@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { ChevronDown } from 'lucide-react';
 
 import { cn } from '@/core/utils/cn';
 
@@ -28,13 +27,36 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        'flex flex-1 items-center justify-between py-4 text-left font-medium text-neutral-900 transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'group flex flex-1 items-center justify-between py-4 text-left font-medium text-neutral-900 transition-all hover:underline',
         className
       )}
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200" />
+      <div className="shrink-0 text-neutral-500">
+        <svg
+          className="block h-5 w-5 group-data-[state=open]:hidden"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11 11V7H13V11H17V13H13V17H11V13H7V11H11ZM12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          className="hidden h-5 w-5 group-data-[state=open]:block"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM7 11H17V13H7V11Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

@@ -11,6 +11,7 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   authState?: 'guest' | 'signedIn';
   userName?: string;
   userAvatar?: string;
+  onSignInClick?: () => void;
 }
 
 export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
@@ -19,6 +20,7 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       authState = 'guest',
       userName = 'John Doe',
       userAvatar,
+      onSignInClick,
       className,
       ...props
     },
@@ -149,7 +151,9 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <Button className="w-full">Sign in</Button>
+                <Button className="w-full" onClick={onSignInClick}>
+                  Sign in
+                </Button>
                 <Link
                   href="/register"
                   className="w-full justify-center text-center"
