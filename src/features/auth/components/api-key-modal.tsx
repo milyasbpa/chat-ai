@@ -103,11 +103,14 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
             </DialogFooter>
           </div>
 
-          {/* Bottom Section (Scrollable FAQs) */}
-          <div className="flex flex-col gap-4 overflow-y-auto px-6 pt-4 pb-6">
+          <div className="shrink-0 px-6 pt-2">
             <h3 className="text-[18px] leading-[28px] font-semibold text-neutral-900">
               FAQs
             </h3>
+          </div>
+
+          {/* Bottom Section (Scrollable FAQs) */}
+          <div className="flex flex-col overflow-y-auto px-6 pt-4 pb-6">
             <Accordion type="multiple" className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
