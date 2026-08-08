@@ -43,7 +43,7 @@ export function ChatMessage({
         {!isUser && (
           <>
             <div className="flex flex-row items-start gap-3">
-              <div className="flex shrink-0 items-center justify-center">
+              <div className="flex shrink-0 items-center justify-center rounded-full bg-indigo-50">
                 <svg
                   width="32"
                   height="32"
