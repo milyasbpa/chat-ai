@@ -117,7 +117,7 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
           {authState === 'signedIn' ? (
             <AccountDropdown>
-              <button className="flex w-full items-center gap-1 rounded px-[14px] py-[10px] transition-colors hover:bg-neutral-50">
+              <button className="flex w-full items-center gap-2 rounded px-[14px] py-[10px] transition-colors outline-none hover:bg-neutral-50 focus-visible:bg-neutral-50 data-[state=open]:bg-neutral-50">
                 <Avatar src={userAvatar} alt={userName} />
                 <span className="flex-1 truncate px-0.5 text-left text-[14px] leading-[20px] font-medium text-neutral-900">
                   {userName}

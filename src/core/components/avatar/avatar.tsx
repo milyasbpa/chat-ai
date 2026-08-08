@@ -28,8 +28,14 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             sizes="20px"
           />
         ) : (
-          <span className="text-[10px] font-medium text-neutral-600">
-            {fallback || alt.charAt(0) || '?'}
+          <span className="text-[10px] font-medium text-neutral-600 uppercase">
+            {fallback ||
+              alt
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .substring(0, 2) ||
+              '?'}
           </span>
         )}
       </div>

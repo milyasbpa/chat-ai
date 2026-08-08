@@ -14,7 +14,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       {/* Desktop Sidebar (hidden on mobile) */}
       <div className="hidden lg:block">
         <Sidebar
-          authState="guest"
+          authState="signedIn"
           onSignInClick={() => setIsApiKeyOpen(true)}
         />
       </div>
@@ -31,7 +31,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           {/* Sidebar Panel */}
           <div className="fixed inset-y-0 left-0 z-50 flex w-[320px]">
             <Sidebar
-              authState="guest"
+              authState="signedIn"
               onSignInClick={() => setIsApiKeyOpen(true)}
             />
           </div>
