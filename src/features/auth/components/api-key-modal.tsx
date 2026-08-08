@@ -59,9 +59,9 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-[calc(100%-32px)] max-w-[480px] overflow-hidden rounded-[12px] border-neutral-200 p-0 sm:w-full">
-        {/* Scrollable Container */}
-        <div className="max-h-[85vh] overflow-y-auto">
-          <div className="flex flex-col gap-6 p-6">
+        <div className="flex max-h-[85vh] flex-col">
+          {/* Top Section (Fixed) */}
+          <div className="flex shrink-0 flex-col gap-6 p-6 pb-2">
             <DialogHeader className="gap-1 text-center sm:text-center">
               <DialogTitle className="text-[20px] leading-[28px] font-semibold text-neutral-900">
                 Enter Your OpenAI API Key:
@@ -101,24 +101,25 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
                 Save
               </Button>
             </DialogFooter>
+          </div>
 
-            <div className="flex flex-col gap-4 pt-2">
-              <h3 className="text-[18px] leading-[28px] font-semibold text-neutral-900">
-                FAQs
-              </h3>
-              <Accordion type="multiple" className="w-full">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-[14px] leading-[20px]">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-[14px] leading-[20px]">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+          {/* Bottom Section (Scrollable FAQs) */}
+          <div className="flex flex-col gap-4 overflow-y-auto px-6 pt-4 pb-6">
+            <h3 className="text-[18px] leading-[28px] font-semibold text-neutral-900">
+              FAQs
+            </h3>
+            <Accordion type="multiple" className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-[14px] leading-[20px]">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[14px] leading-[20px]">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </DialogContent>
