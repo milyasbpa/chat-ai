@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Image from 'next/image';
-import { Copy, RefreshCw } from 'lucide-react';
 import { Button } from '@/core/components/button/button';
 import { cn } from '@/core/utils/cn';
 
@@ -10,6 +9,7 @@ export interface ChatMessageProps {
   content?: string;
   images?: string[];
   isLoading?: boolean;
+  isError?: boolean;
 }
 
 export function ChatMessage({
@@ -17,25 +17,30 @@ export function ChatMessage({
   content,
   images,
   isLoading,
+  isError,
 }: ChatMessageProps) {
   const isUser = role === 'user';
 
   return (
     <div
-      className={cn('flex w-full', isUser ? 'justify-end' : 'justify-start')}
+      className={cn(
+        'flex w-full',
+        isUser ? 'justify-end' : 'justify-start lg:justify-center'
+      )}
     >
       <div
         className={cn(
-          'flex max-w-[85%] flex-col gap-3 rounded-lg p-3 lg:max-w-[75%]',
+          'flex flex-col gap-3',
           isUser
-            ? 'bg-neutral-50 text-neutral-900'
-            : 'border border-neutral-200 bg-white'
+            ? 'w-full max-w-full lg:max-w-[70%]'
+            : 'w-full max-w-[528px] rounded-lg border border-neutral-200 bg-white p-3'
         )}
       >
-        {/* User Role */}
-        {isUser && (
-          <div className="text-[14px] leading-[20px] whitespace-pre-wrap">
-            {content}
+        {isUser && content && (
+          <div className="rounded-lg bg-neutral-50 p-3">
+            <span className="text-[14px] leading-[20px] font-normal break-words whitespace-pre-wrap text-neutral-900">
+              {content}
+            </span>
           </div>
         )}
 
@@ -57,38 +62,31 @@ export function ChatMessage({
                   />
                 </svg>
               </div>
-              {isLoading ? (
-                <div className="flex h-8 items-center text-indigo-700">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="animate-pulse"
-                  >
-                    <circle cx="4" cy="12" r="3" fill="currentColor" />
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="3"
-                      fill="currentColor"
-                      className="opacity-75"
-                    />
-                    <circle
-                      cx="20"
-                      cy="12"
-                      r="3"
-                      fill="currentColor"
-                      className="opacity-50"
-                    />
-                  </svg>
-                </div>
-              ) : (
-                <div className="mt-1 flex-1 text-[14px] leading-[20px] whitespace-pre-wrap text-neutral-900">
-                  {content}
-                </div>
-              )}
+              <div className="flex w-full min-w-0 flex-col gap-2 pt-1.5">
+                {isLoading ? (
+                  <div className="flex h-5 items-center">
+                    <div className="flex gap-1">
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-700 [animation-delay:-0.3s]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-700 [animation-delay:-0.15s]" />
+                      <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-700" />
+                    </div>
+                  </div>
+                ) : isError ? (
+                  <div className="flex">
+                    <div className="flex items-center gap-3 rounded-full bg-red-50 px-2 py-1">
+                      <span className="text-[14px] leading-[20px] font-medium text-red-600">
+                        An error occured. Please try again.
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  content && (
+                    <div className="mt-1 flex-1 text-[14px] leading-[20px] whitespace-pre-wrap text-neutral-900">
+                      {content}
+                    </div>
+                  )
+                )}
+              </div>
             </div>
 
             {/* Images row for AI */}
@@ -112,7 +110,7 @@ export function ChatMessage({
             )}
 
             {/* Action buttons for AI */}
-            {!isLoading && (
+            {!isLoading && !isError && (
               <div className="flex w-full flex-row justify-end gap-4 py-2">
                 <Button
                   variant="outline"

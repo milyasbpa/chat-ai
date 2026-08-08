@@ -63,8 +63,13 @@ const mockMessages = [
   },
   {
     id: '6',
+    role: 'user' as const,
+    content: 'Can you show me an example of an error state?',
+  },
+  {
+    id: '7',
     role: 'ai' as const,
-    isLoading: true,
+    isError: true,
   },
 ];
 
