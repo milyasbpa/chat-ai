@@ -76,7 +76,7 @@ const mockMessages = [
 export default function Home() {
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [showJumpToBottom, setShowJumpToBottom] = React.useState(false);
-  const isLoadingHistory = true; // Temporary for screenshot
+  const isLoadingHistory = false; // Temporary for screenshot
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
@@ -147,8 +147,8 @@ export default function Home() {
         {!isLoadingHistory && showJumpToBottom && (
           <div className="absolute bottom-[90px] left-1/2 z-10 -translate-x-1/2 lg:bottom-[100px]">
             <Button
-              variant="outline"
-              className="flex h-[36px] items-center justify-center gap-1 rounded border border-neutral-200 bg-white px-3 py-2 text-neutral-900 shadow-sm hover:bg-neutral-50"
+              variant="secondary"
+              className="flex items-center gap-2 rounded-full px-3 py-1.5 shadow-sm"
               onClick={scrollToBottom}
             >
               <ArrowDown className="h-[20px] w-[20px]" />

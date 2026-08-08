@@ -112,9 +112,9 @@ export function ChatMessage({
             {/* Action buttons for AI */}
             {!isLoading && !isError && (
               <div className="flex w-full flex-row justify-end gap-4 py-2">
-                <Button
-                  variant="outline"
-                  className="flex h-8 w-8 items-center justify-center border-none bg-transparent p-0 text-neutral-500 shadow-none hover:bg-neutral-100 hover:text-neutral-900"
+                <button
+                  type="button"
+                  className="flex h-8 w-8 items-center justify-center rounded p-0 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 focus-visible:ring-4 focus-visible:ring-indigo-700/12 focus-visible:outline-none"
                   onClick={() =>
                     content && navigator.clipboard.writeText(content)
                   }
@@ -131,10 +131,10 @@ export function ChatMessage({
                       fill="currentColor"
                     />
                   </svg>
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex h-8 items-center justify-center gap-1 border-none bg-transparent px-2 text-indigo-700 shadow-none hover:bg-indigo-50"
+                </button>
+                <button
+                  type="button"
+                  className="flex h-8 items-center justify-center gap-1 rounded px-2 text-indigo-700 hover:bg-indigo-50 focus-visible:ring-4 focus-visible:ring-indigo-700/12 focus-visible:outline-none"
                 >
                   <svg
                     width="20"
@@ -163,7 +163,7 @@ export function ChatMessage({
                   <span className="text-[14px] leading-[20px] font-medium">
                     Regenerate
                   </span>
-                </Button>
+                </button>
               </div>
             )}
           </>
