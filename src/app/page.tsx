@@ -1,13 +1,17 @@
+import { EmptyState } from '@/features/chat-session/sections/empty-state';
+import { ChatInput } from '@/features/chat-session/components/chat-input';
+
 export default function Home() {
   return (
-    <div className="flex h-full flex-col p-8">
-      <h1 className="text-2xl font-bold text-neutral-900">
-        Welcome to Chat AI
-      </h1>
-      <p className="mt-2 text-neutral-600">
-        This is the main content area. The sidebar should be visible on the left
-        for desktop view, and a navbar on top for mobile.
-      </p>
+    <div className="flex h-full flex-col items-stretch bg-white px-4 lg:px-[64px]">
+      <div className="mx-auto flex h-full w-full max-w-[800px] flex-col gap-6 pt-8 pb-6 lg:gap-10 lg:pt-[80px] lg:pb-[24px]">
+        <div className="flex flex-1 items-center justify-center">
+          <EmptyState />
+        </div>
+        <div className="w-full shrink-0">
+          <ChatInput />
+        </div>
+      </div>
     </div>
   );
 }
