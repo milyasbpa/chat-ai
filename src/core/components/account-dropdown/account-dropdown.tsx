@@ -16,17 +16,17 @@ export const AccountDropdown = ({
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          align="end"
+          align="center"
           sideOffset={8}
-          className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 flex w-[229px] flex-col gap-2 rounded-lg border border-neutral-200 bg-white p-2 shadow-md"
+          className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 flex w-[var(--radix-dropdown-menu-trigger-width)] flex-col rounded-lg border border-neutral-200 bg-white p-1 shadow-sm"
         >
           <DropdownMenu.Item
             onSelect={onSignOutClick}
-            className="flex w-full cursor-pointer items-center gap-3 rounded-lg p-2 text-neutral-600 transition-colors outline-none hover:bg-neutral-50 focus:bg-neutral-50"
+            className="flex w-full cursor-pointer items-center gap-1 rounded px-[14px] py-[10px] text-neutral-900 transition-colors outline-none hover:bg-neutral-50 focus:bg-neutral-50"
           >
             <svg
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ export const AccountDropdown = ({
                 fill="currentColor"
               />
             </svg>
-            <span className="text-[14px] leading-[20px] font-normal">
+            <span className="text-[14px] leading-[20px] font-medium">
               Sign out
             </span>
           </DropdownMenu.Item>

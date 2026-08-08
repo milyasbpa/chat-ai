@@ -15,7 +15,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       <div className="hidden lg:block">
         <Sidebar
           authState="signedIn"
-          userAvatar="https://i.pravatar.cc/150?img=12"
           onSignInClick={() => setIsApiKeyOpen(true)}
         />
       </div>
@@ -33,7 +32,6 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           <div className="fixed inset-y-0 left-0 z-50 flex w-[320px]">
             <Sidebar
               authState="signedIn"
-              userAvatar="https://i.pravatar.cc/150?img=12"
               onSignInClick={() => setIsApiKeyOpen(true)}
             />
           </div>
