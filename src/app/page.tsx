@@ -40,6 +40,28 @@ const mockMessages = [
     content: 'What is main concern in design?',
   },
   {
+    id: '5-1',
+    role: 'ai' as const,
+    content:
+      "The main concern in design is balancing aesthetics with functionality. A product must look good, but more importantly, it must solve the user's problem efficiently. Additionally, accessibility and inclusivity are paramount to ensure that the design works for as many people as possible regardless of their abilities or circumstances.",
+  },
+  {
+    id: '5-2',
+    role: 'user' as const,
+    content: 'Can you give me an example of an accessible design pattern?',
+  },
+  {
+    id: '5-3',
+    role: 'ai' as const,
+    content:
+      'Certainly! A common accessible design pattern is the use of high color contrast between text and its background. For example, using dark gray text on a white background ensures readability for users with visual impairments. Another example is providing descriptive alt text for images, which allows screen readers to convey the content of the image to visually impaired users.',
+  },
+  {
+    id: '5-4',
+    role: 'user' as const,
+    content: 'That makes sense. What about forms?',
+  },
+  {
     id: '6',
     role: 'ai' as const,
     isLoading: true,
