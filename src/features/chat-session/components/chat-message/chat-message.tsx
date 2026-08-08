@@ -26,10 +26,10 @@ export function ChatMessage({
     >
       <div
         className={cn(
-          'flex max-w-[85%] flex-col gap-3 rounded-xl p-3 lg:max-w-[75%]',
+          'flex max-w-[85%] flex-col gap-3 rounded-lg p-3 lg:max-w-[75%]',
           isUser
-            ? 'rounded-tr-sm bg-neutral-100 text-neutral-900'
-            : 'rounded-tl-sm border border-neutral-200 bg-white'
+            ? 'bg-neutral-50 text-neutral-900'
+            : 'border border-neutral-200 bg-white'
         )}
       >
         {/* User Role */}
@@ -97,14 +97,14 @@ export function ChatMessage({
                 {images.map((src, idx) => (
                   <div
                     key={idx}
-                    className="relative h-[80px] w-[120px] overflow-hidden rounded border border-neutral-200"
+                    className="relative h-[100px] w-[142px] overflow-hidden rounded border border-neutral-200"
                   >
                     <Image
                       src={src}
                       alt={`Attached ${idx}`}
                       fill
                       className="object-cover"
-                      sizes="120px"
+                      sizes="142px"
                     />
                   </div>
                 ))}
@@ -113,7 +113,7 @@ export function ChatMessage({
 
             {/* Action buttons for AI */}
             {!isLoading && (
-              <div className="flex flex-row items-center gap-4 pt-1 pl-[44px]">
+              <div className="flex w-full flex-row justify-end gap-4 py-2">
                 <Button
                   variant="outline"
                   className="h-8 w-8 border-none bg-transparent p-0 text-neutral-500 shadow-none hover:bg-neutral-100 hover:text-neutral-900"
