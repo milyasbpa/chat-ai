@@ -22,7 +22,13 @@ Below are the automated screenshots capturing the different states.
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | ![Desktop](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/jump-desktop.png) | ![Tablet](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/jump-tablet.png) | ![Mobile](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/jump-mobile.png) |
 
-#### 2. Error State Bubble
+#### 2. Code Block State
+
+| Desktop                                                                                        | Tablet                                                                                       | Mobile                                                                                       |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| ![Desktop](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/code-desktop.png) | ![Tablet](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/code-tablet.png) | ![Mobile](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr9/code-mobile.png) |
+
+#### 3. Error State Bubble
 
 | Desktop                                                                                         | Tablet                                                                                        | Mobile                                                                                        |
 | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |

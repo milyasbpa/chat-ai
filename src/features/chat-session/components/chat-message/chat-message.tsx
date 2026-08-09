@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Image from 'next/image';
-import { Button } from '@/core/components/button/button';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { cn } from '@/core/utils/cn';
 
 export interface ChatMessageProps {
@@ -11,6 +14,78 @@ export interface ChatMessageProps {
   isLoading?: boolean;
   isError?: boolean;
 }
+
+const markdownComponents = {
+  code({
+    inline,
+    className,
+    children,
+    ...props
+  }: React.ComponentPropsWithoutRef<'code'> & { inline?: boolean }) {
+    const match = /language-(\w+)/.exec(className || '');
+    const language = match ? match[1] : 'text';
+
+    if (!inline && match) {
+      return (
+        <div className="my-3 flex flex-col gap-6 rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+          <div className="flex items-center justify-between rounded-[4px] bg-neutral-200 px-4 py-2">
+            <span className="text-[14px] font-semibold text-neutral-500 capitalize">
+              {language}
+            </span>
+            <button
+              type="button"
+              className="flex items-center gap-1 text-[14px] font-medium text-neutral-500 hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-indigo-700/50 focus-visible:outline-none"
+              onClick={() =>
+                navigator.clipboard.writeText(
+                  String(children).replace(/\n$/, '')
+                )
+              }
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.52764 5.83295V3.74962C6.52764 3.36609 6.83856 3.05518 7.22208 3.05518H15.5554C15.939 3.05518 16.2499 3.36609 16.2499 3.74962V13.4718C16.2499 13.8554 15.939 14.1663 15.5554 14.1663H13.4721V16.249C13.4721 16.6329 13.1597 16.9441 12.7729 16.9441H4.44907C4.06291 16.9441 3.75 16.6353 3.75 16.249L3.75181 6.528C3.75187 6.14414 4.06433 5.83295 4.45099 5.83295H6.52764ZM5.14057 7.22184L5.13902 15.5552H12.0832V7.22184H5.14057ZM7.91653 5.83295H13.4721V12.7774H14.861V4.44406H7.91653V5.83295Z"
+                  fill="currentColor"
+                />
+              </svg>
+              Copy code
+            </button>
+          </div>
+          <div className="overflow-x-auto text-[14px] leading-[20px]">
+            <SyntaxHighlighter
+              {...props}
+              style={oneLight}
+              language={language}
+              PreTag="div"
+              customStyle={{ background: 'transparent', padding: 0, margin: 0 }}
+            >
+              {String(children).replace(/\n$/, '')}
+            </SyntaxHighlighter>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <code
+        {...props}
+        className={cn(
+          'rounded bg-neutral-100 px-1 py-0.5 font-mono text-[14px]',
+          className
+        )}
+      >
+        {children}
+      </code>
+    );
+  },
+  p({ children }: React.ComponentPropsWithoutRef<'p'>) {
+    return <p className="mb-4 whitespace-pre-wrap last:mb-0">{children}</p>;
+  },
+};
 
 export function ChatMessage({
   role,
@@ -38,9 +113,14 @@ export function ChatMessage({
       >
         {isUser && content && (
           <div className="rounded-lg bg-neutral-50 p-3">
-            <span className="text-[14px] leading-[20px] font-normal break-words whitespace-pre-wrap text-neutral-900">
-              {content}
-            </span>
+            <div className="text-[14px] leading-[20px] font-normal break-words text-neutral-900">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={markdownComponents}
+              >
+                {content}
+              </ReactMarkdown>
+            </div>
           </div>
         )}
 
@@ -81,8 +161,13 @@ export function ChatMessage({
                   </div>
                 ) : (
                   content && (
-                    <div className="mt-1 flex-1 text-[14px] leading-[20px] whitespace-pre-wrap text-neutral-900">
-                      {content}
+                    <div className="mt-1 flex-1 text-[14px] leading-[20px] break-words text-neutral-900">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={markdownComponents}
+                      >
+                        {content}
+                      </ReactMarkdown>
                     </div>
                   )
                 )}

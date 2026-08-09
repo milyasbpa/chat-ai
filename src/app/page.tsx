@@ -69,6 +69,12 @@ const mockMessages = [
   {
     id: '7',
     role: 'ai' as const,
+    content:
+      "Sure! Here's an example of how you can use Python to fetch data:\n\n```python\nimport requests\n\ndef get_weather_data(city):\n    api_key = 'YOUR_API_KEY'  # Replace this with your actual API key\n    base_url = 'https://api.weatherapi.com/v1/current.json'\n```",
+  },
+  {
+    id: '8',
+    role: 'ai' as const,
     isError: true,
   },
 ];
