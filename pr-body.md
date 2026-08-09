@@ -39,15 +39,15 @@ Implemented the Guest Mode Chat interface according to Figma designs and perform
 <br><br>
 **Chat History (Normal)**
 <br>
-![Chat Normal](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/chat-normal.png)
+![Chat Normal](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr10/chat-normal.png)
 <br><br>
 **Error State & Loading State**
 <br>
-![Error State](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/error-state.png)
+![Error State](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr10/error-state.png)
 <br><br>
 **Jump to Bottom Button**
 <br>
-![Jump to Bottom](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr5/jump-to-bottom.png)
+![Jump to Bottom](https://raw.githubusercontent.com/milyasbpa/chat-ai/pr-assets/pr10/jump-to-bottom.png)
 
 ## 🧪 How To Test
 
