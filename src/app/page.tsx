@@ -6,83 +6,20 @@ import { ChatHistory } from '@/features/chat-session/components/chat-history/cha
 import { ChatInput } from '@/features/chat-session/components/chat-input';
 import { Button } from '@/core/components/button/button';
 
-const mockMessages = [
-  {
-    id: '1',
-    role: 'user' as const,
-    content: 'What is the great designer UI UX in your mind?',
-  },
-  {
-    id: '2',
-    role: 'ai' as const,
-    content:
-      'As a Great UI UX Designer, there are several core competencies that are essential for success:\n\nUser-Centered Design: A Senior Product Designer should be able to understand and empathize with users to design products that meet their needs and solve their problems.',
-  },
-  {
-    id: '3',
-    role: 'user' as const,
-    content: 'Give me examples of great UX designer deliverables',
-  },
-  {
-    id: '4',
-    role: 'ai' as const,
-    content:
-      'Here are 3 examples images that can represent great UI UX Designer',
-    images: [
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=240&h=160&fit=crop',
-      'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=240&h=160&fit=crop',
-      'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=240&h=160&fit=crop',
-    ],
-  },
-  {
-    id: '5',
-    role: 'user' as const,
-    content: 'What is main concern in design?',
-  },
-  {
-    id: '5-1',
-    role: 'ai' as const,
-    content:
-      "The main concern in design is balancing aesthetics with functionality. A product must look good, but more importantly, it must solve the user's problem efficiently. Additionally, accessibility and inclusivity are paramount to ensure that the design works for as many people as possible regardless of their abilities or circumstances.",
-  },
-  {
-    id: '5-2',
-    role: 'user' as const,
-    content: 'Can you give me an example of an accessible design pattern?',
-  },
-  {
-    id: '5-3',
-    role: 'ai' as const,
-    content:
-      'Certainly! A common accessible design pattern is the use of high color contrast between text and its background. For example, using dark gray text on a white background ensures readability for users with visual impairments. Another example is providing descriptive alt text for images, which allows screen readers to convey the content of the image to visually impaired users.',
-  },
-  {
-    id: '5-4',
-    role: 'user' as const,
-    content: 'That makes sense. What about forms?',
-  },
-  {
-    id: '6',
-    role: 'user' as const,
-    content: 'Can you show me an example of an error state?',
-  },
-  {
-    id: '7',
-    role: 'ai' as const,
-    content:
-      "Sure! Here's an example of how you can use Python to fetch data:\n\n```python\nimport requests\n\ndef get_weather_data(city):\n    api_key = 'YOUR_API_KEY'  # Replace this with your actual API key\n    base_url = 'https://api.weatherapi.com/v1/current.json'\n```",
-  },
-  {
-    id: '8',
-    role: 'ai' as const,
-    isError: true,
-  },
-];
+import { useTranslations } from 'next-intl';
+import type { ChatMessageProps } from '@/features/chat-session/components/chat-message/chat-message';
+import mockMessagesData from '@/features/chat-session/data/mock-messages.json';
+
+const mockMessages: ChatMessageProps[] = mockMessagesData as ChatMessageProps[];
 
 export default function Home() {
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [showJumpToBottom, setShowJumpToBottom] = React.useState(false);
   const isLoadingHistory = false; // Temporary for screenshot
+
+  const tHistory = useTranslations('chat_history');
+  const tInput = useTranslations('chat_input');
+  const tMessage = useTranslations('chat_message');
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
@@ -131,10 +68,10 @@ export default function Home() {
               </div>
               <div className="flex w-full flex-col gap-2">
                 <span className="text-[20px] leading-[28px] font-medium text-neutral-900">
-                  Loading...
+                  {tHistory('loading')}
                 </span>
                 <span className="text-[16px] leading-[24px] text-neutral-900">
-                  Fetching data, it may take a while
+                  {tHistory('loading_description')}
                 </span>
               </div>
             </div>
@@ -146,7 +83,14 @@ export default function Home() {
             onScroll={handleScroll}
             className="flex-1 overflow-y-auto pr-2"
           >
-            <ChatHistory messages={mockMessages} />
+            <ChatHistory
+              messages={mockMessages.map((msg) => ({
+                ...msg,
+                copyCodeText: tMessage('copy_code'),
+                regenerateText: tMessage('regenerate'),
+                errorText: tMessage('error_message'),
+              }))}
+            />
           </div>
         )}
 
@@ -159,14 +103,14 @@ export default function Home() {
             >
               <ArrowDown className="h-[20px] w-[20px]" />
               <span className="text-[14px] leading-[20px] font-medium">
-                Jump to bottom
+                {tHistory('jump_to_bottom')}
               </span>
             </Button>
           </div>
         )}
 
         <div className="w-full shrink-0">
-          <ChatInput />
+          <ChatInput placeholderText={tInput('placeholder')} />
         </div>
       </div>
     </div>

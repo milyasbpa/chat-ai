@@ -1,0 +1,15 @@
+{
+  "chat_input": {
+    "placeholder": "Ask me anything..."
+  },
+  "chat_message": {
+    "copy_code": "Copy code",
+    "regenerate": "Regenerate",
+    "error_message": "An error occured. Please try again."
+  },
+  "chat_history": {
+    "loading": "Loading...",
+    "loading_description": "Fetching data, it may take a while",
+    "jump_to_bottom": "Jump to bottom"
+  }
+}
