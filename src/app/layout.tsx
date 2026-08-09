@@ -15,21 +15,27 @@ export const metadata: Metadata = {
 
 import QueryProvider from '@/core/config/QueryProvider';
 import { MainLayout } from '@/core/components/layout/main-layout';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const messages = await getMessages();
+
   return (
     <html
       lang="en"
       className={`${notoSans.variable} h-full font-sans antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <QueryProvider>
-          <MainLayout>{children}</MainLayout>
-        </QueryProvider>
+        <NextIntlClientProvider messages={messages}>
+          <QueryProvider>
+            <MainLayout>{children}</MainLayout>
+          </QueryProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

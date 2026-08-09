@@ -1,0 +1,9 @@
+{
+  "api_key_modal": {
+    "title": "Enter Your OpenAI API Key:",
+    "description": "You need an OpenAI API Key to use this app. Your API Key will be stored locally on your browser.",
+    "placeholder": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "link": "Go to Open AI to get your API key",
+    "faqs_title": "FAQs"
+  }
+}

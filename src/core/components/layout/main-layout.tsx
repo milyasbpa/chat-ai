@@ -5,9 +5,14 @@ import { Sidebar } from '@/core/components/sidebar/sidebar';
 import { Navbar } from '@/core/components/navbar/navbar';
 import { ApiKeyModal } from '@/features/auth/components/api-key-modal';
 
+import { useTranslations } from 'next-intl';
+
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isApiKeyOpen, setIsApiKeyOpen] = React.useState(false);
+
+  const tAuth = useTranslations('api_key_modal');
+  const tCommon = useTranslations('common');
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-white">
@@ -47,7 +52,17 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         <main className="flex-1 overflow-auto bg-white">{children}</main>
       </div>
 
-      <ApiKeyModal open={isApiKeyOpen} onOpenChange={setIsApiKeyOpen} />
+      <ApiKeyModal
+        open={isApiKeyOpen}
+        onOpenChange={setIsApiKeyOpen}
+        title={tAuth('title')}
+        description={tAuth('description')}
+        placeholderText={tAuth('placeholder')}
+        linkText={tAuth('link')}
+        faqsTitle={tAuth('faqs_title')}
+        saveText={tCommon('save')}
+        cancelText={tCommon('cancel')}
+      />
     </div>
   );
 }

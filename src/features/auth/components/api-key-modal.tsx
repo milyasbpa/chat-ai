@@ -23,38 +23,36 @@ import { ArrowUpRight } from 'lucide-react';
 interface ApiKeyModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  title?: string;
+  description?: string;
+  placeholderText?: string;
+  linkText?: string;
+  faqsTitle?: string;
+  saveText?: string;
+  cancelText?: string;
 }
 
-export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
+import faqsData from '@/features/auth/data/faqs.json';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export function ApiKeyModal({
+  open,
+  onOpenChange,
+  title = 'Enter Your OpenAI API Key:',
+  description = 'You need an OpenAI API Key to use this app. Your API Key will be stored locally on your browser.',
+  placeholderText = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  linkText = 'Go to Open AI to get your API key',
+  faqsTitle = 'FAQs',
+  saveText = 'Save',
+  cancelText = 'Cancel',
+}: ApiKeyModalProps) {
   const [apiKey, setApiKey] = React.useState('');
 
-  const faqs = [
-    {
-      question: 'API key not working?',
-      answer:
-        'Ensure the API key is correctly copied and pasted without any extra spaces. Check that the API key has not expired or been revoked. Verify that you have the correct permissions and quota for the API usage. If issues persist, consult the OpenAI API documentation or contact OpenAI support.',
-    },
-    {
-      question: 'How is the API key handled?',
-      answer:
-        'The API key is stored locally in your browser and never sent or stored anywhere else. It is used solely to authenticate your requests to the OpenAI API, ensuring secure and authorized access.',
-    },
-    {
-      question: 'Do I need ChatGPT Plus to get an API key?',
-      answer:
-        'No, you do not need a ChatGPT Plus subscription to use the OpenAI API key. The API key is available for use with any OpenAI account, regardless of the subscription tier.',
-    },
-    {
-      question: 'Do I need to pay for an API key from Open AI?',
-      answer:
-        "Yes, using the OpenAI API typically involves usage-based billing. You will be billed based on the number of requests and the computational resources used, according to OpenAI's pricing plan.",
-    },
-    {
-      question: 'License key vs. API key',
-      answer:
-        'An API key is used to authenticate and authorize access to the OpenAI API, allowing you to make API requests. A license key generally refers to a product license for software usage, which may or may not include API access. For OpenAI services, the API key is the primary means of accessing and utilizing their API features.',
-    },
-  ];
+  const faqs: FaqItem[] = faqsData as FaqItem[];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -64,11 +62,10 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
           <div className="flex shrink-0 flex-col gap-6 p-6 pb-2">
             <DialogHeader className="gap-1 text-center sm:text-center">
               <DialogTitle className="text-[20px] leading-[28px] font-semibold text-neutral-900">
-                Enter Your OpenAI API Key:
+                {title}
               </DialogTitle>
               <DialogDescription className="text-[14px] leading-[20px] font-normal text-neutral-500">
-                You need an OpenAI API Key to use this app. Your API Key will be
-                stored locally on your browser.
+                {description}
               </DialogDescription>
             </DialogHeader>
 
@@ -76,7 +73,7 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
               <Input
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                placeholder={placeholderText}
               />
               <a
                 href="https://platform.openai.com/api-keys"
@@ -85,7 +82,7 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
                 className="inline-flex items-center gap-1 self-start text-[14px] leading-[20px] font-medium text-indigo-600 hover:underline"
               >
                 <ArrowUpRight className="h-4 w-4" />
-                Go to Open AI to get your API key
+                {linkText}
               </a>
             </div>
 
@@ -95,17 +92,17 @@ export function ApiKeyModal({ open, onOpenChange }: ApiKeyModalProps) {
                 className="flex-1"
                 onClick={() => onOpenChange(false)}
               >
-                Cancel
+                {cancelText}
               </Button>
               <Button className="flex-1" onClick={() => onOpenChange(false)}>
-                Save
+                {saveText}
               </Button>
             </DialogFooter>
           </div>
 
           <div className="shrink-0 px-6 pt-2">
             <h3 className="text-[18px] leading-[28px] font-semibold text-neutral-900">
-              FAQs
+              {faqsTitle}
             </h3>
           </div>
 

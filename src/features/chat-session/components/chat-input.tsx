@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { TextField } from '@/core/components/textfield/textfield';
 import { Button } from '@/core/components/button/button';
+import { SendIcon } from '@/core/icons/send-icon';
 
-export function ChatInput() {
+interface ChatInputProps {
+  placeholderText?: string;
+}
+
+export function ChatInput({
+  placeholderText = 'Ask me anything...',
+}: ChatInputProps) {
   const [value, setValue] = React.useState('');
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -33,26 +40,16 @@ export function ChatInput() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Ask me anything..."
-        className="flex-1 overflow-y-auto"
+        placeholder={placeholderText}
+        className="max-h-[144px] min-h-[44px] flex-1 overflow-y-auto"
         rows={1}
-        style={{ minHeight: '44px', maxHeight: '144px' }}
       />
       <Button
         variant="primary"
         disabled={!value.trim()}
         className="h-[44px] w-[44px] shrink-0 border-none px-0 shadow-none transition-colors disabled:bg-neutral-100 disabled:text-neutral-400 disabled:opacity-100 md:w-auto md:px-4"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          stroke="none"
-          className="shrink-0"
-        >
-          <path d="M3.4 20.4l17.45-7.48a1 1 0 0 0 0-1.84L3.4 3.6a.993.993 0 0 0-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z" />
-        </svg>
+        <SendIcon className="shrink-0" />
         <span className="ml-1 hidden font-medium md:inline">Submit</span>
       </Button>
     </div>
